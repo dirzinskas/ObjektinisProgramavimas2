@@ -22,16 +22,21 @@ class Studentas {
     int egz;
     double vidurkis, mediana;
     public:
+    Studentas():egz(0), vidurkis(0), mediana(0) {}
+    Studentas(istream& is);
+    inline string vardas() const { return vardas; };
+    inline string pavarde() const { return pavarde; };
+    double gautiVidurki() const { return vidurkis; };
+    double gautiMediana() const { return mediana; };
+    istream& readStudent(istream& is);
+};
     int RandomSk(int max);
     bool LyginimasStr(const Studentas &petras, const Studentas &jonas);
     void Rikiuoti(vector<Studentas>& s);
     void Rikiuoti(list<Studentas>& s);
     double Mediana(vector<int> pazymiai);
     double Vidurkis(vector<int> pazymiai);
-};
-
-
-void GeneruotiDuomenis();
+    void GeneruotiDuomenis();
 void Meniu();
 
 
@@ -155,5 +160,7 @@ void Rezultatai(konteineris s) {
              << setw(20) << fixed << setprecision(2) << st.vidurkis
              << setw(20) << st.mediana << endl;
 }
+
+
 
 #endif
