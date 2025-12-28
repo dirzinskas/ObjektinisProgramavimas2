@@ -22,12 +22,17 @@ class Studentas {
     int egz;
     double vidurkis, mediana;
     public:
+
     Studentas():egz(0), vidurkis(0), mediana(0) {}
     Studentas(istream& is);
-    inline string vardas() const { return vardas; };
-    inline string pavarde() const { return pavarde; };
-    double gautiVidurki() const { return vidurkis; };
-    double gautiMediana() const { return mediana; };
+    //getteriai
+    inline string vardas_() const { return vardas; };
+    inline string pavarde_() const { return pavarde; };
+    double vidurkis_() const { return vidurkis; };
+    double mediana_() const { return mediana; };
+    vector<int> nd_() const { return nd; };
+    int egz_() const { return egz; };
+
     istream& readStudent(istream& is);
 };
     int RandomSk(int max);
@@ -73,7 +78,7 @@ void Skaitymas(konteineris& s, string failas) {
         }
 
         petras.vidurkis = 0.4 * Vidurkis(petras.nd) + 0.6 * petras.egz;
-        petras.mediana  = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
+        petras.mediana = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
 
         s.push_back(petras);
     }
@@ -96,12 +101,11 @@ void Ivedimas(konteineris& s, bool generuoti) {
         cout << "Iveskite pavarde:" << endl;
         getline(cin, zodis);
         petras.pavarde = zodis;
-
         if (generuoti) {
             int ndSk = RandomSk(15);
             for (int i = 0; i < ndSk; i++)
                 petras.nd.push_back(RandomSk(10));
-            petras.egz = RandomSk(10);
+            petras.egz  = RandomSk(10);
         } else {
             while (true) {
                 cout << "Iveskite ND pazymi (Enter uzbaigs):" << endl;
@@ -120,15 +124,14 @@ void Ivedimas(konteineris& s, bool generuoti) {
         }
 
         petras.vidurkis = 0.4 * Vidurkis(petras.nd) + 0.6 * petras.egz;
-        petras.mediana  = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
-
+        petras.mediana = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
         s.push_back(petras);
         cout << "Studento duomenys ivesti!" << endl;
     }
 }
 
 template<typename konteineris>
-void Rasymas(konteineris s, string x) {
+void Rasymas(konteineris& s, string x) {
     ofstream rez("rezultatai_" + x + ".txt");
     rez << "Pavarde Vardas Galutinis(Vid.) Galutinis(Med.)\n";
     for (auto& st : s)

@@ -1,11 +1,32 @@
 #include "studentas.h"
 
+Studentas::Studentas(istream& is) {
+    readStudent(is);
+}
+
+istream& Studentas::readStudent(istream& is) {
+    is >> vardas >> pavarde;
+    int pazymys;
+    nd.clear();
+    while (is >> pazymys) {
+        nd.push_back(pazymys);
+    }
+    if (!nd.empty()) {
+        egz = nd.back();
+        nd.pop_back();
+    } else {
+        egz = 0;
+    }
+    vidurkis = 0.4 * Vidurkis(nd) + 0.6 * egz;
+    mediana  = 0.4 * Mediana(nd)  + 0.6 * egz;
+    return is;
+}
 int RandomSk(int max) {
     return rand() % (max + 1);
 }
 
 bool LyginimasStr(const Studentas &a, const Studentas &b) {
-    return a.vardas < b.vardas;
+    return a.vardas_() < b.vardas_();
 }
 
 void Rikiuoti(vector<Studentas>& s) {
@@ -18,7 +39,7 @@ void Rikiuoti(list<Studentas>& s) {
 void Rusiavimas(vector<Studentas>& s, vector<Studentas>& v) {
     auto it = partition(s.begin(), s.end(),
                         [](const Studentas& st){
-                            return !(st.vidurkis < 5 && st.mediana < 5);
+                            return !(st.vidurkis_() < 5 && st.mediana_() < 5);
                         });
     v.insert(v.end(), it, s.end());
     s.erase(it, s.end());
@@ -27,7 +48,7 @@ void Rusiavimas(list<Studentas>& s, list<Studentas>& v) {
     auto it = s.begin();
     while (it != s.end()) {
         auto dabartinis = it++;
-        if (dabartinis->vidurkis < 5 && dabartinis->mediana < 5) {
+        if (dabartinis->vidurkis_() < 5 && dabartinis->mediana_() < 5) {
             v.splice(v.end(), s, dabartinis);
         }
     }
