@@ -22,7 +22,6 @@ class Studentas {
     int egz;
     double vidurkis, mediana;
     public:
-
     Studentas():egz(0), vidurkis(0), mediana(0) {}
     Studentas(istream& is);
     //getteriai
@@ -32,6 +31,10 @@ class Studentas {
     double mediana_() const { return mediana; };
     vector<int> nd_() const { return nd; };
     int egz_() const { return egz; };
+    void galBalai() {
+        vidurkis = 0.4 * Vidurkis(nd) + 0.6 * egz;
+        mediana  = 0.4 * Mediana(nd)  + 0.6 * egz;
+    }
 
     istream& readStudent(istream& is);
 };
@@ -39,8 +42,6 @@ class Studentas {
     bool LyginimasStr(const Studentas &petras, const Studentas &jonas);
     void Rikiuoti(vector<Studentas>& s);
     void Rikiuoti(list<Studentas>& s);
-    double Mediana(vector<int> pazymiai);
-    double Vidurkis(vector<int> pazymiai);
     void GeneruotiDuomenis();
 void Meniu();
 
@@ -79,7 +80,7 @@ void Ivedimas(konteineris& s, bool generuoti) {
         cout << "Iveskite varda (Enter uzbaigs):" << endl;
         getline(cin, zodis);
         if (zodis.empty()) break;
-        petras.vardas_ = zodis;
+        petras.vardas = zodis;
 
         cout << "Iveskite pavarde:" << endl;
         getline(cin, zodis);
@@ -106,8 +107,8 @@ void Ivedimas(konteineris& s, bool generuoti) {
             petras.egz = stoi(zodis);
         }
 
-        petras.vidurkis = 0.4 * Vidurkis(petras.nd) + 0.6 * petras.egz;
-        petras.mediana = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
+        petras.vidurkis_() = 0.4 * Vidurkis(petras.nd_()) + 0.6 * petras.egz_();
+        petras.mediana_() = 0.4 * Mediana(petras.nd_())  + 0.6 * petras.egz_();
         s.push_back(petras);
         cout << "Studento duomenys ivesti!" << endl;
     }
@@ -118,8 +119,8 @@ void Rasymas(konteineris& s, string x) {
     ofstream rez("rezultatai_" + x + ".txt");
     rez << "Pavarde Vardas Galutinis(Vid.) Galutinis(Med.)\n";
     for (auto& st : s)
-        rez << st.pavarde << " " << st.vardas << " "
-            << st.vidurkis << " " << st.mediana << "\n";
+        rez << st.pavarde_() << " " << st.vardas_() << " "
+            << st.vidurkis_() << " " << st.mediana_() << "\n";
 }
 
 void Rusiavimas(vector<Studentas>& s, vector<Studentas>& v);
@@ -141,10 +142,10 @@ void Rezultatai(konteineris s) {
          << setw(20) << "Galutinis (Med.)" << endl;
 
     for (auto& st : s)
-        cout << setw(20) << st.pavarde
-             << setw(20) << st.vardas
-             << setw(20) << fixed << setprecision(2) << st.vidurkis
-             << setw(20) << st.mediana << endl;
+        cout << setw(20) << st.pavarde_()
+             << setw(20) << st.vardas_()
+             << setw(20) << fixed << setprecision(2) << st.vidurkis_()
+             << setw(20) << st.mediana_() << endl;
 }
 
 
