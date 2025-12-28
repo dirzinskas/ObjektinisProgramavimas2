@@ -4,6 +4,22 @@ Studentas::Studentas(istream& is) {
     readStudent(is);
 }
 
+double Mediana(vector<int> pazymiai) {
+    if (pazymiai.empty()) return 0.0;
+    sort(pazymiai.begin(), pazymiai.end());
+    int n = pazymiai.size();
+    return (n % 2 == 0)
+        ? (pazymiai[n/2 - 1] + pazymiai[n/2]) / 2.0
+        : pazymiai[n/2];
+}
+
+double Vidurkis(vector<int> pazymiai) {
+    if (pazymiai.empty()) return 0.0;
+    double suma = 0;
+    for (int x : pazymiai) suma += x;
+    return suma / pazymiai.size();
+}
+
 istream& Studentas::readStudent(istream& is) {
     is >> vardas >> pavarde;
     int pazymys;
@@ -53,21 +69,7 @@ void Rusiavimas(list<Studentas>& s, list<Studentas>& v) {
         }
     }
 }
-double Mediana(vector<int> pazymiai) {
-    if (pazymiai.empty()) return 0.0;
-    sort(pazymiai.begin(), pazymiai.end());
-    int n = pazymiai.size();
-    return (n % 2 == 0)
-        ? (pazymiai[n/2 - 1] + pazymiai[n/2]) / 2.0
-        : pazymiai[n/2];
-}
 
-double Vidurkis(vector<int> pazymiai) {
-    if (pazymiai.empty()) return 0.0;
-    double suma = 0;
-    for (int x : pazymiai) suma += x;
-    return suma / pazymiai.size();
-}
 
 void GeneruotiDuomenis() {
     int dydziai[] = {1000, 10000, 100000};

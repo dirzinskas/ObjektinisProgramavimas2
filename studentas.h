@@ -31,10 +31,6 @@ class Studentas {
     double mediana_() const { return mediana; };
     vector<int> nd_() const { return nd; };
     int egz_() const { return egz; };
-    void galBalai() {
-        vidurkis = 0.4 * Vidurkis(nd) + 0.6 * egz;
-        mediana  = 0.4 * Mediana(nd)  + 0.6 * egz;
-    }
 
     istream& readStudent(istream& is);
 };
@@ -76,39 +72,43 @@ void Ivedimas(konteineris& s, bool generuoti) {
     string zodis;
     while (true) {
         Studentas petras;
-
+        string vardas, pavarde;
         cout << "Iveskite varda (Enter uzbaigs):" << endl;
         getline(cin, zodis);
         if (zodis.empty()) break;
-        petras.vardas = zodis;
 
         cout << "Iveskite pavarde:" << endl;
         getline(cin, zodis);
-        petras.pavarde = zodis;
+        stringstream ss;
+        ss << vardas << " " << pavarde << " ";
         if (generuoti) {
             int ndSk = RandomSk(15);
             for (int i = 0; i < ndSk; i++)
-                petras.nd.push_back(RandomSk(10));
-            petras.egz  = RandomSk(10);
+                ss << RandomSk(10) << " ";
+            ss << RandomSk(10);
         } else {
             while (true) {
-                cout << "Iveskite ND pazymi (Enter uzbaigs):" << endl;
-                getline(cin, zodis);
-                if (zodis.empty()) break;
+                string ndStr;
+                cout << "Iveskite ND pazymi (Enter uzbaigs): ";
+                getline(cin, ndStr);
+                if (ndStr.empty()) break;
                 try {
-                    petras.nd.push_back(stoi(zodis));
+                    int paz = stoi(ndStr);
+                    ss << paz << " ";
                 } catch (...) {
                     cout << "Netinkama ivestis." << endl;
                 }
             }
 
-            cout << "Iveskite egzamino rezultata:" << endl;
-            getline(cin, zodis);
-            petras.egz = stoi(zodis);
+            string egzStr;
+            cout << "Iveskite egzamino rezultata: ";
+            getline(cin, egzStr);
+            ss << stoi(egzStr);
         }
 
-        petras.vidurkis_() = 0.4 * Vidurkis(petras.nd_()) + 0.6 * petras.egz_();
-        petras.mediana_() = 0.4 * Mediana(petras.nd_())  + 0.6 * petras.egz_();
+         istringstream iss(ss.str());
+        petras.readStudent(iss);
+
         s.push_back(petras);
         cout << "Studento duomenys ivesti!" << endl;
     }

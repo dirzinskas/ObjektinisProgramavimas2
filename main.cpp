@@ -35,14 +35,14 @@ void runProgram(konteineris& s) {
                 break;
             }
 
-            case 2:
+            case 2:{
                 Ivedimas(s, false);
                 break;
-
-            case 3:
+            }
+            case 3:{
                 Ivedimas(s, true);
                 break;
-
+        }
             case 4: {
                 cout << "Iveskite failo varda: ";
                 cin >> failas;
@@ -75,17 +75,17 @@ void runProgram(konteineris& s) {
                         v.push_back(st);
                     else
                         g.push_back(st);
-                }           
+                }
 
                 auto end = high_resolution_clock::now();
                 cout << "Rusiavimas i grupes uztruko: "
                      << duration_cast<milliseconds>(end - start).count()
                      << " ms" << endl;
 
-
+                if(y==5){
                 if (x == 'g') Rezultatai(g);
                 else if (x == 'v') Rezultatai(v);
-                else Rezultatai(s);
+                else Rezultatai(s);}
 
 
                 if (y == 6) {
@@ -93,26 +93,27 @@ void runProgram(konteineris& s) {
                         cout << "Klaida. Nera tinkamu studentu" << endl;
                     } else {
                         start = high_resolution_clock::now();
-                        Rasymas(g, "g");
-                        Rasymas(v, "v");
+                        if (x == 'g') Rasymas(g, "g");
+                        else if (x == 'v') Rasymas(v, "v");
+                        else Rasymas(s, "a");
                         end = high_resolution_clock::now();
                         cout << "Rezultatu isvedimas i failus uztruko: "
                              << duration_cast<milliseconds>(end - start).count()
                              << " ms" << endl;
-                    }
-                }
+                    }}
+                
                 break;
-            }
-
+            
+                }
             case 7:
                 cout << "Programa baigia darba." << endl;
                 break;
 
             default:
                 cout << "Netinkama ivestis. Pasirinkite skaiciu 1-7:" << endl;
-        }
+                break;
 
-    } while (y != 7);
+    }}while (y != 7);
 }
 
 int main() {
