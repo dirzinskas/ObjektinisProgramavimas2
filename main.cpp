@@ -71,7 +71,7 @@ void runProgram(konteineris& s) {
                 v.clear();
                 g.clear();
                 for (auto &st : s) {
-                    if (st.vidurkis < 5 && st.mediana < 5)
+                    if (st.vidurkis_() < 5 && st.mediana_() < 5)
                         v.push_back(st);
                     else
                         g.push_back(st);

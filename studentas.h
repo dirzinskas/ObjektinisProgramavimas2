@@ -57,32 +57,15 @@ void Skaitymas(konteineris& s, string failas) {
     getline(in, eilute);
 
     while (getline(in, eilute)) {
-        if (eilute.empty()) continue;
+    if (eilute.empty()) continue;
 
-        istringstream iss(eilute);
-        Studentas petras;
-        iss >> petras.vardas >> petras.pavarde;
+    istringstream iss(eilute);
+    Studentas petras;
 
-        string zodis;
-        while (iss >> zodis) {
-            try {
-                petras.nd.push_back(stoi(zodis));
-            } catch (...) {
-                petras.nd.push_back(0);
-            }
-        }
+    petras.readStudent(iss);
 
-        if (!petras.nd.empty()) {
-            petras.egz = petras.nd.back();
-            petras.nd.pop_back();
-        }
-
-        petras.vidurkis = 0.4 * Vidurkis(petras.nd) + 0.6 * petras.egz;
-        petras.mediana = 0.4 * Mediana(petras.nd)  + 0.6 * petras.egz;
-
-        s.push_back(petras);
-    }
-
+    s.push_back(petras);
+}
     cout << "Duomenys nuskaityti is failo. Viso: "
          << s.size() << " studentu." << endl;
 }
@@ -96,7 +79,7 @@ void Ivedimas(konteineris& s, bool generuoti) {
         cout << "Iveskite varda (Enter uzbaigs):" << endl;
         getline(cin, zodis);
         if (zodis.empty()) break;
-        petras.vardas = zodis;
+        petras.vardas_ = zodis;
 
         cout << "Iveskite pavarde:" << endl;
         getline(cin, zodis);
