@@ -77,7 +77,9 @@ void Rusiavimas(vector<Studentas>& s, vector<Studentas>& v) {
                         [](const Studentas& st){
                             return !(st.vidurkis_() < 5 && st.mediana_() < 5);
                         });
-    v.insert(v.end(), it, s.end());
+    v.insert(v.end(), 
+    make_move_iterator(it),
+    make_move_iterator(s.end()));
     s.erase(it, s.end());
 }
 void Rusiavimas(list<Studentas>& s, list<Studentas>& v) {
