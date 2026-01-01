@@ -108,8 +108,8 @@ void Ivedimas(konteineris& s, bool generuoti) {
             ss << stoi(egzStr);
         }
 
-         istringstream iss(ss.str());
-        petras.readStudent(iss);
+        istringstream iss(ss.str());
+        Studentas petras(iss)
 
         s.push_back(petras);
         cout << "Studento duomenys ivesti!" << endl;
