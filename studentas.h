@@ -71,16 +71,14 @@ void Skaitymas(konteineris& s, string failas) {
 
 template<typename konteineris>
 void Ivedimas(konteineris& s, bool generuoti) {
-    string zodis;
     while (true) {
-        Studentas petras;
         string vardas, pavarde;
         cout << "Iveskite varda (Enter uzbaigs):" << endl;
-        getline(cin, zodis);
-        if (zodis.empty()) break;
+        getline(cin, vardas);
+        if (vardas.empty()) break;
 
         cout << "Iveskite pavarde:" << endl;
-        getline(cin, zodis);
+        getline(cin, pavarde);
         stringstream ss;
         ss << vardas << " " << pavarde << " ";
         if (generuoti) {
@@ -109,7 +107,7 @@ void Ivedimas(konteineris& s, bool generuoti) {
         }
 
         istringstream iss(ss.str());
-        Studentas petras(iss)
+        Studentas petras(iss);
 
         s.push_back(petras);
         cout << "Studento duomenys ivesti!" << endl;
