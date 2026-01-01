@@ -63,11 +63,7 @@ void Skaitymas(konteineris& s, string failas) {
     if (eilute.empty()) continue;
 
     istringstream iss(eilute);
-    Studentas petras;
-
-    petras.readStudent(iss);
-
-    s.push_back(petras);
+    s.push_back(Studentas(iss));
 }
     cout << "Duomenys nuskaityti is failo. Viso: "
          << s.size() << " studentu." << endl;
