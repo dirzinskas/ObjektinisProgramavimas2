@@ -17,7 +17,6 @@ public:
     virtual ~Zmogus() = default;
     
     virtual void printInfo() const = 0;
-    virtual double calculateGrade() const = 0;
     
     std::string getVardas() const { return vardas; }
     std::string getPavarde() const { return pavarde; }
