@@ -25,6 +25,11 @@ void runProgram(konteineris& s) {
         }
 
         switch (y) {
+            case 0: {
+                cout<<"Norint patestuoti, atkomentuoti koda main.cpp 30 eiluteje."<<endl;
+                //Zmogus x;
+                break;
+            }
             case 1: {
                 auto start = high_resolution_clock::now();
                 GeneruotiDuomenis();

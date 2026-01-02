@@ -117,6 +117,7 @@ void Meniu() {
     cout << "-----------------------------------------" << endl;
     cout << "MENIU" << endl;
     cout << "-----------------------------------------" << endl;
+    cout << "0. Testuoti abstrakcia klase" <<endl;
     cout << "1. Sugeneruoti testinius failus" << endl;
     cout << "2. Ivesti duomenis ranka" << endl;
     cout << "3. Ivesti duomenis sugeneruojant pazymius" << endl;
