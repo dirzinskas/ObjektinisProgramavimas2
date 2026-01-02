@@ -28,6 +28,7 @@ void runProgram(konteineris& s) {
             case 0: {
                 cout<<"Norint patestuoti, atkomentuoti koda main.cpp 30 eiluteje."<<endl;
                 //Zmogus x;
+                //Studentas s;
                 break;
             }
             case 1: {
