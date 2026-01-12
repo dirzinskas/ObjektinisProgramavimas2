@@ -11,3 +11,12 @@ TEST_CASE("Studento sukurimo defaultai", "[studentas]"){
     REQUIRE(s.mediana_() == 0.0);
     REQUIRE(s.nd_().empty());
 }
+
+TEST_CASE("Lyginimo patikra", "[lyginimasstr]"){
+    stringstream ss;
+    ss << "Asilas Asilaitis 8 9 10 7 6 9";
+    Studentas a(ss);
+    ss <<"Bebras Bebraitis 10 10 9 8 9 10";
+    Studentas b(ss);
+    REQUIRE(LyginimasStr(a, b) == false);
+}
