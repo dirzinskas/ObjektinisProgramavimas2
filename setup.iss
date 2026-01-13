@@ -6,6 +6,7 @@ DefaultDirName={pf}\VU\Vardenis-Pavardenis
 DefaultGroupName=VU\Vardenis-Pavardenis
 UninstallDisplayIcon={app}\Studentai.exe
 OutputBaseFilename=Setup
+PrivilegesRequired=admin
 Compression=lzma
 SolidCompression=yes
 
