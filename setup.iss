@@ -1,7 +1,7 @@
 
 [Setup]
 AppName=Studentai
-AppVersion=3.0
+AppVersion=v3.0
 DefaultDirName={pf}\VU\Vardenis-Pavardenis
 DefaultGroupName=VU\Vardenis-Pavardenis
 UninstallDisplayIcon={app}\Studentai.exe
